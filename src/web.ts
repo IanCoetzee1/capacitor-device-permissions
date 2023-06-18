@@ -10,7 +10,7 @@ export class DevicePermissionsWeb
         return options;
     }
 
-    async isPermissionConfigured(_permissionTypes: Array<string>): Promise<boolean> {
+    async isPermissionConfigured(_permissionTypes: Object): Promise<boolean> {
         console.log('Warning: isPermissionConfigured is not available via the Web interface.');
         return false;
     }
