@@ -9,4 +9,8 @@ public class DevicePermissions {
         Log.i("Echo", "I added this" + value);
         return value;
     }
+
+    public String isPermissionConfigured() {
+      return "Does not work";
+    }
 }

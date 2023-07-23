@@ -1,4 +1,4 @@
 export interface DevicePermissionsPlugin {
     echo(options: { value: string }): Promise<{ value: string }>;
-    isPermissionConfigured(permissionTypes: Object): Promise<boolean>;
+    isPermissionConfigured(_permissionTypes: unknown): Promise<{ value: string }>;
 }
