@@ -39,14 +39,14 @@ echo(options: { value: string; }) => Promise<{ value: string; }>
 ### isPermissionConfigured(...)
 
 ```typescript
-isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | null; }>
+isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | undefined; }>
 ```
 
 | Param                  | Type                 |
 | ---------------------- | -------------------- |
 | **`_permissionTypes`** | <code>unknown</code> |
 
-**Returns:** <code>Promise&lt;{ value: string | null; }&gt;</code>
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
