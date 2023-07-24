@@ -72,6 +72,8 @@ export const supportedPermissions = {
     ios: [],
 };
 
+export const MY_CONSTANT = "Hello, Android!";
+
 export interface DevicePermissionsPlugin {
     echo(options: { value: string }): Promise<{ value: string }>;
     isPermissionConfigured(_permissionTypes: unknown): Promise<{ value: string | undefined }>;
