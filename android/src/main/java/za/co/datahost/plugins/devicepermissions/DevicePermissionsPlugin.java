@@ -14,6 +14,7 @@ public class DevicePermissionsPlugin extends Plugin {
     @PluginMethod
     public void echo(PluginCall call) {
         String value = call.getString("value");
+        //Object permissionsAvailable = DevicePermissionsPlugin.supportedPermissions;
         JSObject ret = new JSObject();
         ret.put("value", implementation.echo(value));
         call.resolve(ret);
