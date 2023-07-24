@@ -10,7 +10,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 public class DevicePermissionsPlugin extends Plugin {
 
     private DevicePermissions implementation = new DevicePermissions();
-
+    private supportedPermissions implimentation = new supportedPermissions();
     @PluginMethod
     public void echo(PluginCall call) {
         String value = call.getString("value");
