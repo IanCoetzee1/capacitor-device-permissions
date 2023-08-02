@@ -24,7 +24,7 @@ npx cap sync
 ### echo(...)
 
 ```typescript
-echo(_options: { value: string; }) => Promise<{ value: string; }>
+echo(_options: { value: string; }) => Promise<{ value: string | undefined; }>
 ```
 
 | Param          | Type                            |
