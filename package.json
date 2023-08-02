@@ -38,7 +38,7 @@
         "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
         "swiftlint": "node-swiftlint",
         "docgen": "docgen --api DevicePermissionsPlugin --output-readme README.md --output-json dist/docs.json",
-        "prebuild": "echo running build\n",
+        "prebuild": "cp src/jsonConstants/*.json android/src/main/res/raw/JSONConstants/",
         "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
         "clean": "rimraf ./dist",
         "watch": "tsc --watch",
