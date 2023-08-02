@@ -5,9 +5,8 @@ import type {DevicePermissionsPlugin} from './definitions';
 export class DevicePermissionsWeb
     extends WebPlugin
     implements DevicePermissionsPlugin {
-    async echo(options: { value: string }): Promise<{ value: string }> {
-        console.log('ECHO', options);
-        return options;
+    async echo(_options: { value: string }): Promise<{ value: string }> {
+        throw new Error('Warning: echo is not available via the Web interface.');
     }
 
     async isPermissionConfigured(_permissionTypes: unknown): Promise<{ value: string | undefined }> {
