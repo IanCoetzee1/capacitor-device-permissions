@@ -11,7 +11,6 @@ export class DevicePermissionsWeb
     }
 
     async isPermissionConfigured(_permissionTypes: unknown): Promise<{ value: string | undefined }> {
-        console.log('Warning: isPermissionConfigured is not available via the Web interface.');
-        return { value: undefined };
+        throw new Error('Warning: isPermissionConfigured is not available via the Web interface.');
     }
 }
