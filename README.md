@@ -16,7 +16,6 @@ npx cap sync
 * [`echo(...)`](#echo)
 * [`setup(...)`](#setup)
 * [`isPermissionConfigured(...)`](#ispermissionconfigured)
-* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -41,12 +40,12 @@ echo(_options: { value: string; }) => Promise<{ value: string | undefined; }>
 ### setup(...)
 
 ```typescript
-setup(_options: { config: SupportedPermissions; }) => void
+setup(_options: { config: typeof SupportedPermissions; }) => void
 ```
 
-| Param          | Type                                                                               |
-| -------------- | ---------------------------------------------------------------------------------- |
-| **`_options`** | <code>{ config: <a href="#supportedpermissions">SupportedPermissions</a>; }</code> |
+| Param          | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`_options`** | <code>{ config: { web: {}; androidGms: { alias: { INTERNET: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; NOTIFICATIONS: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; NETWORK_STATE: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; CAMERA: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; BOOT_RECEIVER: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; FULL_SCREEN_INTENT: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; IGNORE_BATTERY_OPTIMIZATIONS: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; LOCATION: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; BACKGROUND_LOCATION: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; }; }; ios: never[]; }; }</code> |
 
 --------------------
 
@@ -64,20 +63,5 @@ isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | u
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
-
-
-### Type Aliases
-
-
-#### SupportedPermissions
-
-<code>{ web: <a href="#record">Record</a>&lt;string, never&gt;, androidGms: { alias: { INTERNET: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.INTERNET', ], }, NOTIFICATIONS: { //Android 13 - Notifications permission required minSDK: 33, maxSDK: 0, permissionsArray: [ 'android.permission.POST_NOTIFICATIONS', ], }, NETWORK_STATE: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.ACCESS_NETWORK_STATE', ], }, CAMERA: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.CAMERA', ], }, BOOT_RECEIVER: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.RECEIVE_BOOT_COMPLETED', ], }, FULL_SCREEN_INTENT: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.USE_FULL_SCREEN_INTENT', ], }, IGNORE_BATTERY_OPTIMIZATIONS: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS', ], }, LOCATION: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.ACCESS_COARSE_LOCATION', 'android.permission.ACCESS_FINE_LOCATION', ], }, BACKGROUND_LOCATION: { minSDK: 0, maxSDK: 0, permissionsArray: [ 'android.permission.ACCESS_BACKGROUND_LOCATION', ], }, } }, ios: [], }</code>
-
-
-#### Record
-
-Construct a type with a set of properties K of type T
-
-<code>{ [P in K]: T; }</code>
 
 </docgen-api>

@@ -1,5 +1,5 @@
-export type SupportedPermissions = {
-    web: Record<string, never>,
+export const SupportedPermissions = {
+    web: {},
     androidGms: {
         alias: {
             INTERNET: {
@@ -74,7 +74,7 @@ export type SupportedPermissions = {
 
 export interface DevicePermissionsPlugin {
     echo(_options: { value: string }): Promise<{ value: string | undefined }>;
-    setup(_options: { config: SupportedPermissions }): void;
+    setup(_options: { config: typeof SupportedPermissions }): void;
     isPermissionConfigured(_permissionTypes: unknown): Promise<{ value: string | undefined }>;
 }
 
