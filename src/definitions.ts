@@ -1,4 +1,4 @@
-export interface SupportedPermissions {
+export type SupportedPermissions = {
     web: Record<string, never>,
     androidGms: {
         alias: {
