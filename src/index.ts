@@ -11,3 +11,6 @@ const DevicePermissions = registerPlugin<DevicePermissionsPlugin>(
 
 export * from './definitions';
 export {DevicePermissions};
+
+//ChatGPT recons I can call a setup function in the native code
+//DevicePermissions.setup({ config: complexConfig });

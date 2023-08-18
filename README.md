@@ -14,7 +14,10 @@ npx cap sync
 <docgen-index>
 
 * [`echo(...)`](#echo)
+* [`setup(...)`](#setup)
 * [`isPermissionConfigured(...)`](#ispermissionconfigured)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -36,6 +39,19 @@ echo(_options: { value: string; }) => Promise<{ value: string | undefined; }>
 --------------------
 
 
+### setup(...)
+
+```typescript
+setup(_options: { config: SupportedPermissions; }) => void
+```
+
+| Param          | Type                                                                               |
+| -------------- | ---------------------------------------------------------------------------------- |
+| **`_options`** | <code>{ config: <a href="#supportedpermissions">SupportedPermissions</a>; }</code> |
+
+--------------------
+
+
 ### isPermissionConfigured(...)
 
 ```typescript
@@ -49,5 +65,27 @@ isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | u
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
+
+
+### Interfaces
+
+
+#### SupportedPermissions
+
+| Prop             | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`web`**        | <code><a href="#record">Record</a>&lt;string, never&gt;</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **`androidGms`** | <code>{ alias: { INTERNET: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.INTERNET']; }; NOTIFICATIONS: { minSDK: 33; maxSDK: 0; permissionsArray: ['android.permission.POST_NOTIFICATIONS']; }; NETWORK_STATE: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.ACCESS_NETWORK_STATE']; }; CAMERA: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.CAMERA']; }; BOOT_RECEIVER: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.RECEIVE_BOOT_COMPLETED']; }; FULL_SCREEN_INTENT: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.USE_FULL_SCREEN_INTENT']; }; IGNORE_BATTERY_OPTIMIZATIONS: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS']; }; LOCATION: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.ACCESS_COARSE_LOCATION', 'android.permission.ACCESS_FINE_LOCATION']; }; BACKGROUND_LOCATION: { minSDK: 0; maxSDK: 0; permissionsArray: ['android.permission.ACCESS_BACKGROUND_LOCATION']; }; }; }</code> |
+| **`ios`**        | <code>[]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+
+### Type Aliases
+
+
+#### Record
+
+Construct a type with a set of properties K of type T
+
+<code>{ [P in K]: T; }</code>
 
 </docgen-api>
