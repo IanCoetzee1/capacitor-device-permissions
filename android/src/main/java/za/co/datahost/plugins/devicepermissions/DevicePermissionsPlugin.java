@@ -21,6 +21,12 @@ public class DevicePermissionsPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void setup(PluginCall call) {
+        JSObject config = call.getObject("config");
+        implementation.setup(config);
+    }
+
+    @PluginMethod
     public void isPermissionConfigured(PluginCall call) {
         String value = call.getString("value");
 
