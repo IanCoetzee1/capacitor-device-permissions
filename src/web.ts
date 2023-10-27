@@ -1,7 +1,7 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type { DevicePermissionsPlugin } from './definitions';
-import {SupportedPermissions} from "./definitions";
+import { SupportedPermissions } from "./definitions";
 
 export class DevicePermissionsWeb
     extends WebPlugin

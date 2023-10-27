@@ -1,4 +1,4 @@
-export const SupportedPermissions = {
+export interface SupportedPermissions {
     web: {},
     androidGms: {
         alias: {
@@ -74,7 +74,7 @@ export const SupportedPermissions = {
 
 export interface DevicePermissionsPlugin {
     echo(_options: { value: string }): Promise<{ value: string | undefined }>;
-    setup(_options: { config: typeof SupportedPermissions }): void;
+    setup(_options: { config: SupportedPermissions }): void;
     isPermissionConfigured(_permissionTypes: unknown): Promise<{ value: string | undefined }>;
 }
 
