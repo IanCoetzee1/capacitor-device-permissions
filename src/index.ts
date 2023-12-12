@@ -1,7 +1,7 @@
-import {registerPlugin} from '@capacitor/core';
+import { registerPlugin } from '@capacitor/core';
 
 import type { DevicePermissionsPlugin } from './definitions';
-import { SupportedPermissions } from "./definitions";
+//import { SupportedPermissions } from "./definitions";
 
 const DevicePermissions = registerPlugin<DevicePermissionsPlugin>(
     'DevicePermissions',
@@ -11,7 +11,5 @@ const DevicePermissions = registerPlugin<DevicePermissionsPlugin>(
 );
 
 export * from './definitions';
-export {DevicePermissions};
+export { DevicePermissions };
 
-//ChatGPT recons I can call a setup function in the native code
-DevicePermissions.setup({ config: SupportedPermissions });

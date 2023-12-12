@@ -38,6 +38,7 @@
         "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
         "swiftlint": "node-swiftlint",
         "docgen": "docgen --api DevicePermissionsPlugin --output-readme README.md --output-json dist/docs.json",
+        "prebuild": "cp src/config/* android/src/main/res/raw/",
         "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
         "clean": "rimraf ./dist",
         "watch": "tsc --watch",

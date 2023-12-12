@@ -14,7 +14,6 @@ npx cap sync
 <docgen-index>
 
 * [`echo(...)`](#echo)
-* [`setup(...)`](#setup)
 * [`isPermissionConfigured(...)`](#ispermissionconfigured)
 
 </docgen-index>
@@ -33,19 +32,6 @@ echo(_options: { value: string; }) => Promise<{ value: string | undefined; }>
 | **`_options`** | <code>{ value: string; }</code> |
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
-
---------------------
-
-
-### setup(...)
-
-```typescript
-setup(_options: { config: typeof SupportedPermissions; }) => void
-```
-
-| Param          | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **`_options`** | <code>{ config: { web: {}; androidGms: { alias: { INTERNET: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; NOTIFICATIONS: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; NETWORK_STATE: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; CAMERA: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; BOOT_RECEIVER: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; FULL_SCREEN_INTENT: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; IGNORE_BATTERY_OPTIMIZATIONS: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; LOCATION: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; BACKGROUND_LOCATION: { minSDK: number; maxSDK: number; permissionsArray: string[]; }; }; }; ios: never[]; }; }</code> |
 
 --------------------
 
