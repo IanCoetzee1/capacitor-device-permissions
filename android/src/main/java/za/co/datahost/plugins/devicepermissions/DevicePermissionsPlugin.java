@@ -19,13 +19,16 @@ public class DevicePermissionsPlugin extends Plugin {
     private PermissionsHelperClass PermissionsHelpers = new PermissionsHelperClass();
     @Override
     public void load() {
-        this.supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions, getContext());
+      PermissionsHelpers.setContext(getContext());
+      this.supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions);
     }
 
     @PluginMethod
     public void echo(PluginCall call) {
         String value = call.getString("value");
         JSObject ret = new JSObject();
+        Log.i("IAN/DEV", "hasGMS " + PermissionsHelpers.hasGMS());
+        Log.i("IAN/DEV", "hasHMS " + PermissionsHelpers.hasHMS());
         ret.put("value", implementation.echo(value));
         call.resolve(ret);
     }
