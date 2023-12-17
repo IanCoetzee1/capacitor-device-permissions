@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class PermissionsHelperClass {
 
-  public Context context;
+  private Context context;
 
   public void setContext(Context context) {
     this.context = context;
