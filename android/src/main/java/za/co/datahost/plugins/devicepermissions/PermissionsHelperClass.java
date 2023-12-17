@@ -1,7 +1,12 @@
 package za.co.datahost.plugins.devicepermissions;
 
 import android.content.Context;
+
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.huawei.hms.api.HuaweiApiAvailability;
+
 import org.json.JSONObject;
+
 import java.io.InputStream;
 
 public class PermissionsHelperClass {
@@ -19,5 +24,16 @@ public class PermissionsHelperClass {
       ex.printStackTrace();
       return null;
     }
+  }
+
+  public boolean hasGMS(Context context) {
+    GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+    int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
+    return resultCode == com.google.android.gms.common.ConnectionResult.SUCCESS;
+  }
+  public boolean hasHMS(Context context) {
+    HuaweiApiAvailability apiAvailability = HuaweiApiAvailability.getInstance();
+    int resultCode = apiAvailability.isHuaweiMobileServicesAvailable(context);
+    return resultCode == com.huawei.hms.api.ConnectionResult.SUCCESS;
   }
 }
