@@ -16,10 +16,10 @@ public class DevicePermissionsPlugin extends Plugin {
 
     private JSONObject supportedPermissions;
     private DevicePermissions implementation = new DevicePermissions();
-
+    private PermissionsHelperClass PermissionsHelpers = new PermissionsHelperClass();
     @Override
     public void load() {
-        this.supportedPermissions = readJSONFile(R.raw.supportedpermissions);
+        this.supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions, getContext());
     }
 
     @PluginMethod
@@ -36,21 +36,5 @@ public class DevicePermissionsPlugin extends Plugin {
         JSObject ret = new JSObject();
         ret.put("value", implementation.echo(value));
         call.resolve(ret);
-    }
-
-    private JSONObject readJSONFile(int resourceId) {
-        try {
-            Context context = getContext();
-            InputStream is = context.getResources().openRawResource(resourceId);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, "UTF-8");
-            return new JSONObject(json);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
     }
 }
