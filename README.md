@@ -15,6 +15,8 @@ npx cap sync
 
 * [`echo(...)`](#echo)
 * [`isPermissionConfigured(...)`](#ispermissionconfigured)
+* [`hasHMS()`](#hashms)
+* [`hasGMS()`](#hasgms)
 
 </docgen-index>
 
@@ -47,6 +49,28 @@ isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | u
 | **`_permissionTypes`** | <code>unknown</code> |
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
+### hasHMS()
+
+```typescript
+hasHMS() => Promise<boolean>
+```
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
+
+--------------------
+
+
+### hasGMS()
+
+```typescript
+hasGMS() => Promise<boolean>
+```
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
 
 --------------------
 

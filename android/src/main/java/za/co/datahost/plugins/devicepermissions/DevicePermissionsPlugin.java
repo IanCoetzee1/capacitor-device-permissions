@@ -40,4 +40,18 @@ public class DevicePermissionsPlugin extends Plugin {
         ret.put("value", implementation.echo(value));
         call.resolve(ret);
     }
+
+    @PluginMethod
+    public void hasGMS(PluginCall call) {
+        JSObject ret = new JSObject();
+        ret.put("return", PermissionsHelpers.hasGMS());
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void hasHMS(PluginCall call) {
+        JSObject ret = new JSObject();
+        ret.put("return", PermissionsHelpers.hasHMS());
+        call.resolve(ret);
+    }
 }
