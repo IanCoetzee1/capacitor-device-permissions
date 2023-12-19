@@ -1,18 +1,16 @@
 package za.co.datahost.plugins.devicepermissions;
 
-import android.content.Context;
-
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.huawei.hms.api.HuaweiApiAvailability;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.InputStream;
+import android.content.Context;
 
 public class PermissionsHelperClass {
 
   private Context context;
   private String OSIdent;
-
   private JSONObject PermissionsJSON;
 
   public void setContext(Context context) {
@@ -30,6 +28,20 @@ public class PermissionsHelperClass {
       throw new RuntimeException("JSON does not contain a member named " + this.OSIdent);
     }
   }
+
+  public boolean hasGMS() {
+    Context context = this.context;
+    GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+    int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
+    return resultCode == com.google.android.gms.common.ConnectionResult.SUCCESS;
+  }
+  public boolean hasHMS() {
+    Context context = this.context;
+    HuaweiApiAvailability apiAvailability = HuaweiApiAvailability.getInstance();
+    int resultCode = apiAvailability.isHuaweiMobileServicesAvailable(context);
+    return resultCode == com.huawei.hms.api.ConnectionResult.SUCCESS;
+  }
+
   public JSONObject readJSONFile(int resourceId) {
     try {
       Context context = this.context;
@@ -44,18 +56,5 @@ public class PermissionsHelperClass {
       ex.printStackTrace();
       return null;
     }
-  }
-
-  public boolean hasGMS() {
-    Context context = this.context;
-    GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-    int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
-    return resultCode == com.google.android.gms.common.ConnectionResult.SUCCESS;
-  }
-  public boolean hasHMS() {
-    Context context = this.context;
-    HuaweiApiAvailability apiAvailability = HuaweiApiAvailability.getInstance();
-    int resultCode = apiAvailability.isHuaweiMobileServicesAvailable(context);
-    return resultCode == com.huawei.hms.api.ConnectionResult.SUCCESS;
   }
 }
