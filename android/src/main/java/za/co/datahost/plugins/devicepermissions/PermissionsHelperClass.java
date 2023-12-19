@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.InputStream;
 import android.content.Context;
+import android.util.Log;
 
 public class PermissionsHelperClass {
 
@@ -24,8 +25,9 @@ public class PermissionsHelperClass {
   public void setDevicePermissionsJSON(JSONObject allPermisions) {
     try {
       this.PermissionsJSON = allPermisions.getJSONObject(this.OSIdent);
-    } catch (JSONException e) {
-      throw new RuntimeException("JSON does not contain a member named " + this.OSIdent);
+    } catch (JSONException ex) {
+      Log.e("Plugin: capacitor-device-permissions","JSON does not contain a member named " + this.OSIdent);
+      ex.printStackTrace();
     }
   }
 
@@ -53,6 +55,7 @@ public class PermissionsHelperClass {
       String json = new String(buffer, "UTF-8");
       return new JSONObject(json);
     } catch (Exception ex) {
+      Log.e("Plugin: capacitor-device-permissions","Could not read valid JSON from configuration");
       ex.printStackTrace();
       return null;
     }
