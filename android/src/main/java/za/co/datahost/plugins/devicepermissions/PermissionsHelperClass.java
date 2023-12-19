@@ -1,14 +1,11 @@
 package za.co.datahost.plugins.devicepermissions;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.huawei.hms.api.HuaweiApiAvailability;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.InputStream;
 
 public class PermissionsHelperClass {
