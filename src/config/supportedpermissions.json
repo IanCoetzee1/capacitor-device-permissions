@@ -1,6 +1,6 @@
 {
-  "web" : [],
-  "androidGms" : {
+  "web" : {},
+  "androidGMS" : {
     "alias" : {
       "INTERNET" : {
         "minSDK" : 0,
@@ -68,5 +68,8 @@
       }
     }
   },
-  "ios" : []
+  "androidHMS" : {
+
+  },
+  "ios" : {}
 }

@@ -1,10 +1,12 @@
 package za.co.datahost.plugins.devicepermissions;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.huawei.hms.api.HuaweiApiAvailability;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -12,11 +14,25 @@ import java.io.InputStream;
 public class PermissionsHelperClass {
 
   private Context context;
+  private String OSIdent;
+
+  private JSONObject PermissionsJSON;
 
   public void setContext(Context context) {
     this.context = context;
   }
 
+  public void setOSIdent(String OSIdent) {
+    this.OSIdent = OSIdent;
+  }
+
+  public void setDevicePermissionsJSON(JSONObject allPermisions) {
+    try {
+      this.PermissionsJSON = allPermisions.getJSONObject(this.OSIdent);
+    } catch (JSONException e) {
+      throw new RuntimeException("JSON does not contain a member named " + this.OSIdent);
+    }
+  }
   public JSONObject readJSONFile(int resourceId) {
     try {
       Context context = this.context;

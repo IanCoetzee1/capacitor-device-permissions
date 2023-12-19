@@ -8,6 +8,8 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import android.content.Context;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.InputStream;
 
@@ -15,12 +17,23 @@ import java.io.InputStream;
 public class DevicePermissionsPlugin extends Plugin {
 
     private JSONObject supportedPermissions;
+    private String OSIdent;
     private DevicePermissions implementation = new DevicePermissions();
     private PermissionsHelperClass PermissionsHelpers = new PermissionsHelperClass();
     @Override
     public void load() {
       PermissionsHelpers.setContext(getContext());
       this.supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions);
+      if (PermissionsHelpers.hasGMS()) {
+          this.OSIdent = "androidGMS";
+      } else if (PermissionsHelpers.hasHMS()) {
+          this.OSIdent = "androidHMS";
+      } else {
+          this.OSIdent = "none";
+          throw new RuntimeException("Device has to support either Google Mobile Services or Huawei Mobile Services");
+      }
+      PermissionsHelpers.setOSIdent(this.OSIdent);
+      PermissionsHelpers.setDevicePermissionsJSON(this.supportedPermissions);
     }
 
     @PluginMethod
