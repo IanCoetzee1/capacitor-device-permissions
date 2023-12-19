@@ -10,54 +10,54 @@ import android.util.Log;
 
 public class PermissionsHelperClass {
 
-	private Context context;
-	private String OSIdent;
-	private JSONObject PermissionsJSON;
+    private Context context;
+    private String OSIdent;
+    private JSONObject PermissionsJSON;
 
-	public void setContext(Context context) {
-		this.context = context;
-	}
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
-	public void setOSIdent(String OSIdent) {
-		this.OSIdent = OSIdent;
-	}
+    public void setOSIdent(String OSIdent) {
+        this.OSIdent = OSIdent;
+    }
 
-	public void setDevicePermissionsJSON(JSONObject allPermisions) {
-		try {
-			this.PermissionsJSON = allPermisions.getJSONObject(this.OSIdent);
-		} catch (JSONException ex) {
-			Log.e("Plugin: capacitor-device-permissions","JSON does not contain a member named " + this.OSIdent);
-			ex.printStackTrace();
-		}
-	}
+    public void setDevicePermissionsJSON(JSONObject allPermisions) {
+        try {
+            this.PermissionsJSON = allPermisions.getJSONObject(this.OSIdent);
+        } catch (JSONException ex) {
+            Log.e("Plugin: capacitor-device-permissions","JSON does not contain a member named " + this.OSIdent);
+            ex.printStackTrace();
+        }
+    }
 
-	public boolean hasGMS() {
-		Context context = this.context;
-		GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-		int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
-		return resultCode == com.google.android.gms.common.ConnectionResult.SUCCESS;
-	}
-	public boolean hasHMS() {
-		Context context = this.context;
-		HuaweiApiAvailability apiAvailability = HuaweiApiAvailability.getInstance();
-		int resultCode = apiAvailability.isHuaweiMobileServicesAvailable(context);
-		return resultCode == com.huawei.hms.api.ConnectionResult.SUCCESS;
-	}
+    public boolean hasGMS() {
+        Context context = this.context;
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
+        return resultCode == com.google.android.gms.common.ConnectionResult.SUCCESS;
+    }
+    public boolean hasHMS() {
+        Context context = this.context;
+        HuaweiApiAvailability apiAvailability = HuaweiApiAvailability.getInstance();
+        int resultCode = apiAvailability.isHuaweiMobileServicesAvailable(context);
+        return resultCode == com.huawei.hms.api.ConnectionResult.SUCCESS;
+    }
 
-	public JSONObject readJSONFile(int resourceId) {
-		try {
-			Context context = this.context;
-			InputStream is = context.getResources().openRawResource(resourceId);
-			int size = is.available();
-			byte[] buffer = new byte[size];
-			is.read(buffer);
-			is.close();
-			String json = new String(buffer, "UTF-8");
-			return new JSONObject(json);
-		} catch (Exception ex) {
-			Log.e("Plugin: capacitor-device-permissions","Could not read valid JSON from configuration");
-			ex.printStackTrace();
-			return null;
-		}
-	}
+    public JSONObject readJSONFile(int resourceId) {
+        try {
+            Context context = this.context;
+            InputStream is = context.getResources().openRawResource(resourceId);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+            return new JSONObject(json);
+        } catch (Exception ex) {
+            Log.e("Plugin: capacitor-device-permissions","Could not read valid JSON from configuration");
+            ex.printStackTrace();
+            return null;
+        }
+    }
 }
