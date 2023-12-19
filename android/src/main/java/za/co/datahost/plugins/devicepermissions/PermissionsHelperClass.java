@@ -23,8 +23,11 @@ public class PermissionsHelperClass {
     }
 
     public void setDevicePermissionsJSON(JSONObject allPermisions) {
+
         try {
-            this.PermissionsJSON = allPermisions.getJSONObject(this.OSIdent);
+            JSONObject alias;
+            alias = allPermisions.getJSONObject(this.OSIdent);
+            this.PermissionsJSON = alias.getJSONObject("alias");
         } catch (JSONException ex) {
             Log.e("Plugin: capacitor-device-permissions","JSON does not contain a member named " + this.OSIdent);
             ex.printStackTrace();

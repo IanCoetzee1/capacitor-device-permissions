@@ -14,6 +14,7 @@ public class DevicePermissionsPlugin extends Plugin {
     private JSONObject supportedPermissions;
     private String OSIdent;
     private PermissionsHelperClass PermissionsHelpers = new PermissionsHelperClass();
+
     @Override
     public void load() {
       PermissionsHelpers.setContext(getContext());
