@@ -15,8 +15,9 @@ npx cap sync
 
 * [`echo(...)`](#echo)
 * [`isPermissionConfigured(...)`](#ispermissionconfigured)
-* [`hasHMS()`](#hashms)
+* [`isAndroid()`](#isandroid)
 * [`hasGMS()`](#hasgms)
+* [`hasHMS()`](#hashms)
 
 </docgen-index>
 
@@ -53,13 +54,13 @@ isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | u
 --------------------
 
 
-### hasHMS()
+### isAndroid()
 
 ```typescript
-hasHMS() => Promise<boolean>
+isAndroid() => Promise<object>
 ```
 
-**Returns:** <code>Promise&lt;boolean&gt;</code>
+**Returns:** <code>Promise&lt;object&gt;</code>
 
 --------------------
 
@@ -67,10 +68,21 @@ hasHMS() => Promise<boolean>
 ### hasGMS()
 
 ```typescript
-hasGMS() => Promise<boolean>
+hasGMS() => Promise<object>
 ```
 
-**Returns:** <code>Promise&lt;boolean&gt;</code>
+**Returns:** <code>Promise&lt;object&gt;</code>
+
+--------------------
+
+
+### hasHMS()
+
+```typescript
+hasHMS() => Promise<object>
+```
+
+**Returns:** <code>Promise&lt;object&gt;</code>
 
 --------------------
 

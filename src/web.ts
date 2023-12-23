@@ -12,12 +12,17 @@ export class DevicePermissionsWeb
         throw this.unimplemented("isPermissionConfigured - Not implemented on web.");
     }
 
-    async hasHMS(): Promise<boolean> {
-        console.error("hasHMS - Not implemented on web.");
-        return false;
+    async isAndroid(): Promise<object> {
+        return { return: false };
     }
-    async hasGMS(): Promise<boolean> {
+
+    async hasGMS(): Promise<object> {
         console.error("hasGMS - Not implemented on web.");
-        return false;
+        return { return: false };
     }
+    async hasHMS(): Promise<object> {
+        console.error("hasHMS - Not implemented on web.");
+        return { return: false };
+    }
+
 }

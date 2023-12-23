@@ -50,6 +50,13 @@ public class DevicePermissionsPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void isAndroid(PluginCall call) {
+        JSObject ret = new JSObject();
+        ret.put("return", true);
+        call.resolve(ret);
+    }
+
+    @PluginMethod
     public void hasGMS(PluginCall call) {
         JSObject ret = new JSObject();
         ret.put("return", PermissionsHelpers.hasGMS());
