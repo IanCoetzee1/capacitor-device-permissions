@@ -16,10 +16,19 @@ export class DevicePermissionsWeb
         return { return: false };
     }
 
+    async isIOS(): Promise<object> {
+        return { return: false };
+    }
+
+    async isWeb(): Promise<object> {
+        return { return: true };
+    }
+
     async hasGMS(): Promise<object> {
         console.error("hasGMS - Not implemented on web.");
         return { return: false };
     }
+
     async hasHMS(): Promise<object> {
         console.error("hasHMS - Not implemented on web.");
         return { return: false };
