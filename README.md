@@ -16,6 +16,8 @@ npx cap sync
 * [`echo(...)`](#echo)
 * [`isPermissionConfigured(...)`](#ispermissionconfigured)
 * [`isAndroid()`](#isandroid)
+* [`isIOS()`](#isios)
+* [`isWeb()`](#isweb)
 * [`hasGMS()`](#hasgms)
 * [`hasHMS()`](#hashms)
 
@@ -58,6 +60,28 @@ isPermissionConfigured(_permissionTypes: unknown) => Promise<{ value: string | u
 
 ```typescript
 isAndroid() => Promise<object>
+```
+
+**Returns:** <code>Promise&lt;object&gt;</code>
+
+--------------------
+
+
+### isIOS()
+
+```typescript
+isIOS() => Promise<object>
+```
+
+**Returns:** <code>Promise&lt;object&gt;</code>
+
+--------------------
+
+
+### isWeb()
+
+```typescript
+isWeb() => Promise<object>
 ```
 
 **Returns:** <code>Promise&lt;object&gt;</code>
