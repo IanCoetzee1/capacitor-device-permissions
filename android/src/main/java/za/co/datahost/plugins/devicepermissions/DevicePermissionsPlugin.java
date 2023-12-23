@@ -52,34 +52,34 @@ public class DevicePermissionsPlugin extends Plugin {
     @PluginMethod
     public void isAndroid(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("return", true);
+        ret.put("value", true);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void isIOS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("return", false);
+        ret.put("value", false);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void isWeb(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("return", false);
+        ret.put("value", false);
         call.resolve(ret);
     }
     @PluginMethod
     public void hasGMS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("return", PermissionsHelpers.hasGMS());
+        ret.put("value", PermissionsHelpers.hasGMS());
         call.resolve(ret);
     }
 
     @PluginMethod
     public void hasHMS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("return", PermissionsHelpers.hasHMS());
+        ret.put("value", PermissionsHelpers.hasHMS());
         call.resolve(ret);
     }
 }
