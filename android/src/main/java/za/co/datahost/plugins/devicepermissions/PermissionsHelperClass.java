@@ -13,7 +13,7 @@ public class PermissionsHelperClass {
 
     private Context context;
     private String OSIdent;
-    private Gson PermissionsGSON;
+    private Gson permissionsGSON;
 
     public void setContext(Context context) {
         this.context = context;
@@ -31,7 +31,8 @@ public class PermissionsHelperClass {
             if (allPermisions.has(this.OSIdent) && allPermisions.getJSONObject(this.OSIdent).has("alias")) {
                 alias = allPermisions.getJSONObject(this.OSIdent);
                 permissionsJSON = alias.getJSONObject("alias");
-                Log.e("Ian/Dev", "Lets do this: " +permissionsJSON.toString());
+                //permissionsGSON.fromJson(permissionsJSON, String);
+                Log.i("Ian/Dev", "JSON: " + permissionsJSON);
             } else {
                 Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supportedpermissions.json) class member '" + this.OSIdent + "' does not exist or the member does not have an 'alias' sub-member");
                 throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supportedpermissions.json).");
