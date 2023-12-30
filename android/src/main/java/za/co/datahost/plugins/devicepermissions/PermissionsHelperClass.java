@@ -7,12 +7,13 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import android.content.Context;
 import android.util.Log;
+import com.google.gson.Gson;
 
 public class PermissionsHelperClass {
 
     private Context context;
     private String OSIdent;
-    private JSONObject PermissionsJSON;
+    private Gson PermissionsGSON;
 
     public void setContext(Context context) {
         this.context = context;
@@ -25,9 +26,16 @@ public class PermissionsHelperClass {
     public void setDevicePermissionsJSON(JSONObject allPermisions) {
 
         try {
+            JSONObject permissionsJSON;
             JSONObject alias;
-            alias = allPermisions.getJSONObject(this.OSIdent);
-            this.PermissionsJSON = alias.getJSONObject("alias");
+            if (allPermisions.has(this.OSIdent) && allPermisions.getJSONObject(this.OSIdent).has("alias")) {
+                alias = allPermisions.getJSONObject(this.OSIdent);
+                permissionsJSON = alias.getJSONObject("alias");
+                Log.e("Ian/Dev", "Lets do this: " +permissionsJSON.toString());
+            } else {
+                Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supportedpermissions.json) class member '" + this.OSIdent + "' does not exist or the member does not have an 'alias' sub-member");
+                throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supportedpermissions.json).");
+            }
         } catch (JSONException ex) {
             Log.e("Plugin: capacitor-device-permissions","JSON does not contain a member named " + this.OSIdent);
             ex.printStackTrace();
