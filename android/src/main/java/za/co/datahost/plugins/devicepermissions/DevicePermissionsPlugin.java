@@ -31,55 +31,56 @@ public class DevicePermissionsPlugin extends Plugin {
       PermissionsHelpers.setDevicePermissionsJSON(this.supportedPermissions);
     }
 
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
-        JSObject ret = new JSObject();
-        Log.i("IAN/DEV", "hasGMS " + PermissionsHelpers.hasGMS());
-        Log.i("IAN/DEV", "hasHMS " + PermissionsHelpers.hasHMS());
-        ret.put("value", "Hello");
-        call.resolve(ret);
-    }
+//    Leaving this in place as an example
+//    @PluginMethod
+//    public void echo(PluginCall call) {
+//        String value = call.getString("value");
+//        JSObject ret = new JSObject();
+//        Log.i("IAN/DEV", "hasGMS " + PermissionsHelpers.hasGMS());
+//        Log.i("IAN/DEV", "hasHMS " + PermissionsHelpers.hasHMS());
+//        ret.put("value", "Hello");
+//        call.resolve(ret);
+//    }
 
     @PluginMethod
-    public void isPermissionConfigured(PluginCall call) {
-        String value = call.getString("value");
+    public void getPermissionStatus(PluginCall call) {
+        String permission = call.getString("value");
         JSObject ret = new JSObject();
-        ret.put("value", "Hello");
+        ret.put("result", permission);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void isAndroid(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("value", true);
+        ret.put("result", true);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void isIOS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("value", false);
+        ret.put("result", false);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void isWeb(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("value", false);
+        ret.put("result", false);
         call.resolve(ret);
     }
     @PluginMethod
     public void hasGMS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("value", PermissionsHelpers.hasGMS());
+        ret.put("result", PermissionsHelpers.hasGMS());
         call.resolve(ret);
     }
 
     @PluginMethod
     public void hasHMS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("value", PermissionsHelpers.hasHMS());
+        ret.put("result", PermissionsHelpers.hasHMS());
         call.resolve(ret);
     }
 }
