@@ -10,15 +10,15 @@ import org.json.JSONObject;
 
 @CapacitorPlugin(name = "DevicePermissions")
 public class DevicePermissionsPlugin extends Plugin {
-
-    private JSONObject supportedPermissions;
     private String OSIdent;
     private PermissionsHelperClass PermissionsHelpers = new PermissionsHelperClass();
 
     @Override
     public void load() {
+      JSONObject supportedPermissions;
+
       PermissionsHelpers.setContext(getContext());
-      this.supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions);
+      supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions);
       if (PermissionsHelpers.hasGMS()) {
           this.OSIdent = "androidGMS";
       } else if (PermissionsHelpers.hasHMS()) {
@@ -28,7 +28,7 @@ public class DevicePermissionsPlugin extends Plugin {
           throw new RuntimeException("Device has to support either Google Mobile Services or Huawei Mobile Services");
       }
       PermissionsHelpers.setOSIdent(this.OSIdent);
-      PermissionsHelpers.setDevicePermissionsJSON(this.supportedPermissions);
+      PermissionsHelpers.setDevicePermissionsJSON(supportedPermissions);
     }
 
 //    Leaving this in place as an example
