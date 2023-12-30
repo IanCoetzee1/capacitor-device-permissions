@@ -26,10 +26,10 @@ public class PermissionsHelperClass {
     }
 
     public void setDevicePermissionsGson(JSONObject allPermissions) {
+        JSONObject permissionsJSON;
+        JSONObject alias;
 
         try {
-            JSONObject permissionsJSON;
-            JSONObject alias;
             if (allPermissions.has(this.OSIdent) && allPermissions.getJSONObject(this.OSIdent).has("alias")) {
                 alias = allPermissions.getJSONObject(this.OSIdent);
                 permissionsJSON = alias.getJSONObject("alias");
