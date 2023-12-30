@@ -18,7 +18,7 @@ public class DevicePermissionsPlugin extends Plugin {
       JSONObject supportedPermissions;
 
       PermissionsHelpers.setContext(getContext());
-      supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supportedpermissions);
+      supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supported_permissions);
       if (PermissionsHelpers.hasGMS()) {
           this.OSIdent = "androidGMS";
       } else if (PermissionsHelpers.hasHMS()) {

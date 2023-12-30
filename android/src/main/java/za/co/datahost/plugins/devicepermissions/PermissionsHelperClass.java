@@ -36,8 +36,8 @@ public class PermissionsHelperClass {
                 //permissionsGSON.fromJson(permissionsJSON, String);
                 Log.i("Ian/Dev", "JSON: " + permissionsJSON);
             } else {
-                Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supportedpermissions.json) class member '" + this.OSIdent + "' does not exist or the member does not have an 'alias' sub-member");
-                throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supportedpermissions.json).");
+                Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supported_permissions.json) class member '" + this.OSIdent + "' does not exist or the member does not have an 'alias' sub-member");
+                throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supported_permissions.json).");
             }
         } catch (JSONException ex) {
             Log.e("Plugin: capacitor-device-permissions","JSON does not contain a member named " + this.OSIdent);
