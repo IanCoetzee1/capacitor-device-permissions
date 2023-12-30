@@ -28,7 +28,7 @@ public class DevicePermissionsPlugin extends Plugin {
           throw new RuntimeException("Device has to support either Google Mobile Services or Huawei Mobile Services");
       }
       PermissionsHelpers.setOSIdent(this.OSIdent);
-      PermissionsHelpers.setDevicePermissionsJSON(supportedPermissions);
+      PermissionsHelpers.setDevicePermissionsGson(supportedPermissions);
     }
 
 //    Leaving this in place as an example

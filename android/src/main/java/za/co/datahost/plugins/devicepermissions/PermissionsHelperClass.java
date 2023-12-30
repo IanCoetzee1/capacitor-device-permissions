@@ -25,7 +25,7 @@ public class PermissionsHelperClass {
         this.OSIdent = OSIdent;
     }
 
-    public void setDevicePermissionsJSON(JSONObject allPermissions) {
+    public void setDevicePermissionsGson(JSONObject allPermissions) {
 
         try {
             JSONObject permissionsJSON;
