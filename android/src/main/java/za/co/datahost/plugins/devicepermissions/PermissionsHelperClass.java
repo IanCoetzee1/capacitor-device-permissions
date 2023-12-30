@@ -5,6 +5,8 @@ import com.huawei.hms.api.HuaweiApiAvailability;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 import android.content.Context;
 import android.util.Log;
 import com.google.gson.Gson;
@@ -23,13 +25,13 @@ public class PermissionsHelperClass {
         this.OSIdent = OSIdent;
     }
 
-    public void setDevicePermissionsJSON(JSONObject allPermisions) {
+    public void setDevicePermissionsJSON(JSONObject allPermissions) {
 
         try {
             JSONObject permissionsJSON;
             JSONObject alias;
-            if (allPermisions.has(this.OSIdent) && allPermisions.getJSONObject(this.OSIdent).has("alias")) {
-                alias = allPermisions.getJSONObject(this.OSIdent);
+            if (allPermissions.has(this.OSIdent) && allPermissions.getJSONObject(this.OSIdent).has("alias")) {
+                alias = allPermissions.getJSONObject(this.OSIdent);
                 permissionsJSON = alias.getJSONObject("alias");
                 //permissionsGSON.fromJson(permissionsJSON, String);
                 Log.i("Ian/Dev", "JSON: " + permissionsJSON);
@@ -64,7 +66,7 @@ public class PermissionsHelperClass {
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            String json = new String(buffer, "UTF-8");
+            String json = new String(buffer, StandardCharsets.UTF_8);
             return new JSONObject(json);
         } catch (Exception ex) {
             Log.e("Plugin: capacitor-device-permissions","Could not read valid JSON from configuration");
