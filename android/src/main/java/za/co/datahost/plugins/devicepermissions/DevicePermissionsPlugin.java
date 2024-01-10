@@ -55,14 +55,14 @@ public class DevicePermissionsPlugin extends Plugin {
             for (int i = 0; i < permissions.length(); i++) {
                 try {
                     String permission = permissions.getString(i);
-                    Log.i("Counter loop:", String.valueOf(i) + " " + permission);
+                    Log.i("Counter loop:", i + " " + permission);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
         JSObject ret = new JSObject();
-        ret.put("result", permissions);
+        ret.put("result", "This is a string");
         call.resolve(ret);
     }
 
