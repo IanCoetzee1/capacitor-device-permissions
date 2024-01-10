@@ -1,12 +1,18 @@
 package za.co.datahost.plugins.devicepermissions;
 
 import android.util.Log;
+
+import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
+
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Array;
 
 @CapacitorPlugin(name = "DevicePermissions")
 public class DevicePermissionsPlugin extends Plugin {
@@ -43,10 +49,20 @@ public class DevicePermissionsPlugin extends Plugin {
 //    }
 
     @PluginMethod
-    public void getPermissionStatus(PluginCall call) {
-        String permission = call.getString("value");
+    public void isPermissionGranted(PluginCall call) {
+        JSArray permissions = call.getArray("permissions");
+        if (permissions != null && permissions.length() > 0) {
+            for (int i = 0; i < permissions.length(); i++) {
+                try {
+                    String permission = permissions.getString(i);
+                    Log.i("Counter loop:", String.valueOf(i) + " " + permission);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         JSObject ret = new JSObject();
-        ret.put("result", permission);
+        ret.put("result", permissions);
         call.resolve(ret);
     }
 
@@ -70,6 +86,7 @@ public class DevicePermissionsPlugin extends Plugin {
         ret.put("result", false);
         call.resolve(ret);
     }
+
     @PluginMethod
     public void hasGMS(PluginCall call) {
         JSObject ret = new JSObject();

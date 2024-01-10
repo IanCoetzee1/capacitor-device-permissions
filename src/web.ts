@@ -9,9 +9,12 @@ export class DevicePermissionsWeb
     //     throw this.unimplemented("echo - Not implemented on web.");
     // }
 
-    async getPermissionStatus(options: { permissions: string }): Promise<{ result: string | undefined }> {
-        let permission = options.permissions;
-        console.error("getPermissionStatus - Not implemented on the web interface (" + typeof permission + ").", permission);
+    async isPermissionGranted(options: { permissions: Array<string> }): Promise<{ result: string | undefined }> {
+        let permissions = options.permissions;
+        if (!Array.isArray(permissions)) {
+            permissions = [permissions];
+        }
+        console.error("getPermissionStatus - Not implemented on the web interface.", permissions);
         return { result: undefined };
     }
 
