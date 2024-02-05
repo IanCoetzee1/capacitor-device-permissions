@@ -37,21 +37,22 @@ public class PermissionsHelperClass {
                 Gson gson = new Gson();
                 this.permissions = gson.fromJson(alias.getJSONObject("alias").toString() , JsonElement.class);
                 if (this.permissions.isJsonObject()) {
-                    JsonObject jsonObject = this.permissions.getAsJsonObject();
-                    for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-                        String key = entry.getKey();
-                        JsonObject MemberEntries = entry.getValue().getAsJsonObject();
-
-                        Integer minSDK = MemberEntries.get("minSDK").getAsInt();
-                        Integer maxSDK = MemberEntries.get("maxSDK").getAsInt();
-                        JsonArray permissionsArray = MemberEntries.get("permissionsArray").getAsJsonArray();
-                        Log.i("Ian/Dev", "Key: " + key + " Value: " + permissionsArray );
-                        for (int i = 0; i < permissionsArray.size(); i++) {
-                            String permission = permissionsArray.get(i).getAsString();
-                            boolean hasPermissionBeenDeclared = this.hasBeenDeclared(permission);
-                            Log.i("Ian/Dev", "   Count: (" + i + ") " + hasPermissionBeenDeclared + " - "+ permission);
-                        }
-                    }
+// This bit should be in my function call.
+//                    JsonObject jsonObject = this.permissions.getAsJsonObject();
+//                    for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+//                        String key = entry.getKey();
+//                        JsonObject MemberEntries = entry.getValue().getAsJsonObject();
+//
+//                        Integer minSDK = MemberEntries.get("minSDK").getAsInt();
+//                        Integer maxSDK = MemberEntries.get("maxSDK").getAsInt();
+//                        JsonArray permissionsArray = MemberEntries.get("permissionsArray").getAsJsonArray();
+//                        Log.i("Ian/Dev", "Key: " + key + " Value: " + permissionsArray );
+//                        for (int i = 0; i < permissionsArray.size(); i++) {
+//                            String permission = permissionsArray.get(i).getAsString();
+//                            boolean hasPermissionBeenDeclared = this.hasBeenDeclared(permission);
+//                            Log.i("Ian/Dev", "   Count: (" + i + ") " + hasPermissionBeenDeclared + " - "+ permission);
+//                        }
+//                    }
                 } else {
                     Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supported_permissions.json) class member '" + this.OSIdent + "' does not exist or the alias sub-member is not a valid JSON Object");
                     throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supported_permissions.json).");
