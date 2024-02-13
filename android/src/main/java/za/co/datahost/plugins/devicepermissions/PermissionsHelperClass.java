@@ -1,7 +1,6 @@
 package za.co.datahost.plugins.devicepermissions;
 
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.huawei.hms.api.HuaweiApiAvailability;
@@ -20,7 +19,7 @@ import com.google.gson.Gson;
 public class PermissionsHelperClass {
     private Context context;
     private String OSIdent;
-    private JsonElement permissions;
+    private JsonElement supportedPermissions;
 
     public void setContext(Context context) {
         this.context = context;
@@ -35,29 +34,11 @@ public class PermissionsHelperClass {
             if (allPermissions.has(this.OSIdent) && allPermissions.getJSONObject(this.OSIdent).has("alias")) {
                 JSONObject alias = allPermissions.getJSONObject(this.OSIdent);
                 Gson gson = new Gson();
-                this.permissions = gson.fromJson(alias.getJSONObject("alias").toString() , JsonElement.class);
-                if (this.permissions.isJsonObject()) {
-// This bit should be in my function call.
-//                    JsonObject jsonObject = this.permissions.getAsJsonObject();
-//                    for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-//                        String key = entry.getKey();
-//                        JsonObject MemberEntries = entry.getValue().getAsJsonObject();
-//
-//                        Integer minSDK = MemberEntries.get("minSDK").getAsInt();
-//                        Integer maxSDK = MemberEntries.get("maxSDK").getAsInt();
-//                        JsonArray permissionsArray = MemberEntries.get("permissionsArray").getAsJsonArray();
-//                        Log.i("Ian/Dev", "Key: " + key + " Value: " + permissionsArray );
-//                        for (int i = 0; i < permissionsArray.size(); i++) {
-//                            String permission = permissionsArray.get(i).getAsString();
-//                            boolean hasPermissionBeenDeclared = this.hasBeenDeclared(permission);
-//                            Log.i("Ian/Dev", "   Count: (" + i + ") " + hasPermissionBeenDeclared + " - "+ permission);
-//                        }
-//                    }
-                } else {
+                this.supportedPermissions = gson.fromJson(alias.getJSONObject("alias").toString() , JsonElement.class);
+                if (!this.supportedPermissions.isJsonObject()) {
                     Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supported_permissions.json) class member '" + this.OSIdent + "' does not exist or the alias sub-member is not a valid JSON Object");
                     throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supported_permissions.json).");
                 }
-                Log.i("Ian/Dev", "JSON: " + this.permissions.toString());
             } else {
                 Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supported_permissions.json) class member '" + this.OSIdent + "' does not exist or the member does not have an 'alias' sub-member");
                 throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supported_permissions.json).");
@@ -68,7 +49,43 @@ public class PermissionsHelperClass {
         }
     }
 
-    private boolean hasBeenDeclared(String permission) {
+    public JSONObject getParametersFromSupportedPermissionsAlias (String aliasName) throws JSONException {
+        JSONObject result = new JSONObject();
+        JsonElement permissionElement = this.supportedPermissions.getAsJsonObject().get(aliasName);
+
+        if (permissionElement == null || permissionElement.isJsonNull()) {
+            Log.e("Plugin: capacitor-device-permissions","Malformed JSON file (supported_permissions.json) class '" + this.OSIdent + "' does not support " + aliasName + " alias.");
+            throw new RuntimeException("Plugin: capacitor-device-permissions - Malformed JSON file (supported_permissions.json).");
+        } else {
+            JsonObject permissionObject = permissionElement.getAsJsonObject();
+
+            for (Map.Entry<String, JsonElement> entry : permissionObject.entrySet()) {
+                String key = entry.getKey();
+                JsonElement valueElement = entry.getValue();
+
+                if (valueElement.isJsonPrimitive()) {
+                    if (valueElement.getAsJsonPrimitive().isBoolean()) {
+                        result.put(key, valueElement.getAsBoolean());
+                    } else if (valueElement.getAsJsonPrimitive().isNumber()) {
+                        result.put(key, valueElement.getAsNumber());
+                    } else if (valueElement.getAsJsonPrimitive().isString()) {
+                        result.put(key, valueElement.getAsString());
+                    }
+                } else if (valueElement.isJsonObject() || valueElement.isJsonArray()) {
+                    if (valueElement.isJsonObject()) {
+                        result.put(key, valueElement.getAsJsonObject());
+                    } else if (valueElement.isJsonArray()) {
+                        result.put(key, valueElement.isJsonArray());
+                    }
+                } else if (valueElement.isJsonNull()) {
+                    result.put(key, JSONObject.NULL);
+                }
+            }
+        }
+        return result;
+    };
+
+    private boolean isConfiguredInManifest(String permission) {
         try {
             PackageManager pm = this.context.getPackageManager();
             if (pm != null) {
@@ -77,7 +94,6 @@ public class PermissionsHelperClass {
                 int flags = PackageManager.GET_PERMISSIONS;
                 PackageInfo packageInfo = pm.getPackageInfo(packageName, flags);
 
-                // Check if the specified permission is in the declared permissions list
                 String[] declaredPermissions = packageInfo.requestedPermissions;
                 if (declaredPermissions != null) {
                     for (String p : declaredPermissions) {

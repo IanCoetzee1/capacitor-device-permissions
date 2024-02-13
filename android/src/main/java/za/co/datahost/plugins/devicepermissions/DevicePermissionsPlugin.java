@@ -8,6 +8,7 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
+import com.google.gson.JsonElement;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +56,12 @@ public class DevicePermissionsPlugin extends Plugin {
             for (int i = 0; i < permissions.length(); i++) {
                 try {
                     String permission = permissions.getString(i);
-                    Log.i("Counter loop:", i + " " + permission);
+                    //TODO: The below loops through the permissions and checks if they are defined. This can be done with a single call
+                    //isConfiguredInManifest can handle all the logic below.
+                    JSONObject permissionParameters = PermissionsHelpers.getParametersFromSupportedPermissionsAlias(permission);
+                    int minSDK = permissionParameters.has("minSDK") ? permissionParameters.getInt("minSDK") : 0;
+                    Log.i("Ian/Dev:", i + " (" + permission + ") minSDK: " + minSDK + " - Details - " + permissionParameters);
+                    //TODO: End of rethinking my logic
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
