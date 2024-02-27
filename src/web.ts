@@ -10,7 +10,7 @@ export class DevicePermissionsWeb
     //     throw this.unimplemented("echo - Not implemented on web.");
     // }
 
-    async isPermissionGranted(options: { permissions: Array<string> }): Promise<{ result: string | undefined }> {
+    async IsPermissionGranted(options: { permissions: Array<string> }): Promise<{ result: string | undefined }> {
         let permissions = options.permissions;
         if (!Array.isArray(permissions)) {
             permissions = [permissions];
@@ -19,26 +19,15 @@ export class DevicePermissionsWeb
         return { result: undefined };
     }
 
-    async isAndroid(): Promise<object> {
+    async IsAndroid(): Promise<object> {
         return { result: false };
     }
 
-    async isIOS(): Promise<object> {
+    async IsIOS(): Promise<object> {
         return { result: false };
     }
 
-    async isWeb(): Promise<object> {
+    async IsWeb(): Promise<object> {
         return { result: true };
     }
-
-    async hasGMS(): Promise<object> {
-        console.error("hasGMS - Not implemented on the web interface.");
-        return { result: false };
-    }
-
-    async hasHMS(): Promise<object> {
-        console.error("hasHMS - Not implemented on the web interface.");
-        return { result: false };
-    }
-
 }

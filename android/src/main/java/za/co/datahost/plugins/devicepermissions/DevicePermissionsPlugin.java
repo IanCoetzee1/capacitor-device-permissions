@@ -46,7 +46,7 @@ public class DevicePermissionsPlugin extends Plugin {
 //    }
 
     @PluginMethod
-    public void isPermissionGranted(PluginCall call) {
+    public void IsPermissionGranted(PluginCall call) {
         JSArray permissions = call.getArray("permissions");
         if (permissions != null && permissions.length() > 0) {
             for (int i = 0; i < permissions.length(); i++) {
@@ -69,21 +69,21 @@ public class DevicePermissionsPlugin extends Plugin {
     }
 
     @PluginMethod
-    public void isAndroid(PluginCall call) {
+    public void IsAndroid(PluginCall call) {
         JSObject ret = new JSObject();
         ret.put("result", true);
         call.resolve(ret);
     }
 
     @PluginMethod
-    public void isIOS(PluginCall call) {
+    public void IsIOS(PluginCall call) {
         JSObject ret = new JSObject();
         ret.put("result", false);
         call.resolve(ret);
     }
 
     @PluginMethod
-    public void isWeb(PluginCall call) {
+    public void IsWeb(PluginCall call) {
         JSObject ret = new JSObject();
         ret.put("result", false);
         call.resolve(ret);
