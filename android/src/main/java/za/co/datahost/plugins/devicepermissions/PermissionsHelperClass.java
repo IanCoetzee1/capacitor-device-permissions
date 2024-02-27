@@ -1,15 +1,13 @@
 package za.co.datahost.plugins.devicepermissions;
 
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.huawei.hms.api.HuaweiApiAvailability;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-
+import za.co.datahost.plugins.detectmobileservices.DetectMobileServicesPlugin;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.Context;
@@ -20,15 +18,12 @@ public class PermissionsHelperClass {
     private Context context;
     private String OSIdent;
     private JsonElement supportedPermissions;
-
     public void setContext(Context context) {
         this.context = context;
     }
-
     public void setOSIdent(String OSIdent) {
         this.OSIdent = OSIdent;
     }
-
     public void setDevicePermissionsGson(JSONObject allPermissions) {
         try {
             if (allPermissions.has(this.OSIdent) && allPermissions.getJSONObject(this.OSIdent).has("alias")) {
@@ -109,16 +104,10 @@ public class PermissionsHelperClass {
         return false; // Permission is not declared
     }
     public boolean hasGMS() {
-        Context context = this.context;
-        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
-        return resultCode == com.google.android.gms.common.ConnectionResult.SUCCESS;
+        return DetectMobileServicesPlugin.checkGMS(this.context);
     }
     public boolean hasHMS() {
-        Context context = this.context;
-        HuaweiApiAvailability apiAvailability = HuaweiApiAvailability.getInstance();
-        int resultCode = apiAvailability.isHuaweiMobileServicesAvailable(context);
-        return resultCode == com.huawei.hms.api.ConnectionResult.SUCCESS;
+        return DetectMobileServicesPlugin.checkGMS(this.context);
     }
     public JSONObject readJSONFile(int resourceId) {
         try {

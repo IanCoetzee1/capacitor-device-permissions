@@ -8,12 +8,8 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
-import com.google.gson.JsonElement;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Array;
 
 @CapacitorPlugin(name = "DevicePermissions")
 public class DevicePermissionsPlugin extends Plugin {
@@ -93,17 +89,4 @@ public class DevicePermissionsPlugin extends Plugin {
         call.resolve(ret);
     }
 
-    @PluginMethod
-    public void hasGMS(PluginCall call) {
-        JSObject ret = new JSObject();
-        ret.put("result", PermissionsHelpers.hasGMS());
-        call.resolve(ret);
-    }
-
-    @PluginMethod
-    public void hasHMS(PluginCall call) {
-        JSObject ret = new JSObject();
-        ret.put("result", PermissionsHelpers.hasHMS());
-        call.resolve(ret);
-    }
 }

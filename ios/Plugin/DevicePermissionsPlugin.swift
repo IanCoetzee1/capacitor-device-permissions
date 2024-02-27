@@ -7,12 +7,12 @@ import Capacitor
  */
 @objc(DevicePermissionsPlugin)
 public class DevicePermissionsPlugin: CAPPlugin {
-    private let implementation = DevicePermissions()
+//    private let implementation = DevicePermissions()
 
     @objc func echo(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+//        call.resolve([
+//            "value": implementation.echo(value)
+//        ])
     }
 }
