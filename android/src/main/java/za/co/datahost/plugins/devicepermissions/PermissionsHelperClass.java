@@ -18,13 +18,13 @@ public class PermissionsHelperClass {
     private Context context;
     private String OSIdent;
     private JsonElement supportedPermissions;
-    public void setContext(Context context) {
+    public void SetContext(Context context) {
         this.context = context;
     }
-    public void setOSIdent(String OSIdent) {
+    public void SetOSIdent(String OSIdent) {
         this.OSIdent = OSIdent;
     }
-    public void setDevicePermissionsGson(JSONObject allPermissions) {
+    public void SetDevicePermissionsGson(JSONObject allPermissions) {
         try {
             if (allPermissions.has(this.OSIdent) && allPermissions.getJSONObject(this.OSIdent).has("alias")) {
                 JSONObject alias = allPermissions.getJSONObject(this.OSIdent);
@@ -80,7 +80,7 @@ public class PermissionsHelperClass {
         return result;
     };
 
-    private boolean isConfiguredInManifest(String permission) {
+    private boolean IsConfiguredInManifest(String permission) {
         try {
             PackageManager pm = this.context.getPackageManager();
             if (pm != null) {
@@ -103,10 +103,10 @@ public class PermissionsHelperClass {
         }
         return false; // Permission is not declared
     }
-    public boolean hasGMS() {
+    public boolean HasGMS() {
         return DetectMobileServicesPlugin.checkGMS(this.context);
     }
-    public boolean hasHMS() {
+    public boolean HasHMS() {
         return DetectMobileServicesPlugin.checkGMS(this.context);
     }
     public JSONObject readJSONFile(int resourceId) {

@@ -20,18 +20,18 @@ public class DevicePermissionsPlugin extends Plugin {
     public void load() {
       JSONObject supportedPermissions;
 
-      PermissionsHelpers.setContext(getContext());
+      PermissionsHelpers.SetContext(getContext());
       supportedPermissions = PermissionsHelpers.readJSONFile(R.raw.supported_permissions);
-      if (PermissionsHelpers.hasGMS()) {
+      if (PermissionsHelpers.HasGMS()) {
           this.OSIdent = "androidGMS";
-      } else if (PermissionsHelpers.hasHMS()) {
+      } else if (PermissionsHelpers.HasHMS()) {
           this.OSIdent = "androidHMS";
       } else {
           this.OSIdent = "none";
           throw new RuntimeException("Device has to support either Google Mobile Services or Huawei Mobile Services");
       }
-      PermissionsHelpers.setOSIdent(this.OSIdent);
-      PermissionsHelpers.setDevicePermissionsGson(supportedPermissions);
+      PermissionsHelpers.SetOSIdent(this.OSIdent);
+      PermissionsHelpers.SetDevicePermissionsGson(supportedPermissions);
     }
 
 //    Leaving this in place as an example
@@ -53,7 +53,7 @@ public class DevicePermissionsPlugin extends Plugin {
                 try {
                     String permission = permissions.getString(i);
                     //TODO: The below loops through the permissions and checks if they are defined. This can be done with a single call
-                    //isConfiguredInManifest can handle all the logic below.
+                    //IsConfiguredInManifest can handle all the logic below.
                     JSONObject permissionParameters = PermissionsHelpers.getParametersFromSupportedPermissionsAlias(permission);
                     int minSDK = permissionParameters.has("minSDK") ? permissionParameters.getInt("minSDK") : 0;
                     Log.i("Ian/Dev:", i + " (" + permission + ") minSDK: " + minSDK + " - Details - " + permissionParameters);
@@ -64,28 +64,28 @@ public class DevicePermissionsPlugin extends Plugin {
             }
         }
         JSObject ret = new JSObject();
-        ret.put("result", "This is a string");
+        ret.put("value", "This is a string");
         call.resolve(ret);
     }
 
     @PluginMethod
     public void IsAndroid(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("result", true);
+        ret.put("value", true);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void IsIOS(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("result", false);
+        ret.put("value", false);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void IsWeb(PluginCall call) {
         JSObject ret = new JSObject();
-        ret.put("result", false);
+        ret.put("value", false);
         call.resolve(ret);
     }
 
